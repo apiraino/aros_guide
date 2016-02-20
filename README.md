@@ -38,9 +38,13 @@ Download from [here](http://aros.sourceforge.net/nightly.php).
 
 Download from [here](http://www.icarosdesktop.org).
 
-## 4 - Compile your first "Hello, world!"
+Icaros can run inside real hardware or a virtual machine (Virtualbox, VMWare, QEMU). The recommended way to move files to and from the virtual machine is through a local network FTP (see Icaros documentation).
 
-Congratulations, you did it!
+However I couldn't make it work. Since I only use Virtualbox and there's no way to share a directory with an Virtualbox Icaros guest machine, I had to use a "secondary" virtual FAT32 hard drive to be **alternatively** mounted either on the virtual machine or the Linux host filesystem.
+
+The file is a VDI image, I have a bash script [vdimount.sh](https://github.com/apiraino/aros_guide/blob/master/vdimount.sh) (requires the `qemu-utils` package) that mounts and unmounts the VDI file on the host filesystem. Customize paths in that script to your needs.
+
+## 4 - Compile your first "Hello, world!"
 
 Time for your first "Hello, World!" compiled for AROS.
 
@@ -71,8 +75,6 @@ In this GIT repo you'll find a handy script ([aros.sh](https://github.com/apirai
     $ sh aros.sh
 
 Adjust the variables in the script to suit your needs.
-
-
 
 ## 5 - Debug a crash in your application
 
