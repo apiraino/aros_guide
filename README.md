@@ -19,7 +19,7 @@ AROS sources are still on Subversion. Access to that repo is too complicated so 
     $ cd ..
     $ mkdir AROS-source
     $ cd AROS-source
-    $ ../../configure --target=linux-i386 --enable-debug
+    $ ../AROS-mirror/AROS/configure --target=linux-i386 --enable-debug
     $ make
 
 A note about compilation `--target`: implicit target is `linux-i386` to build the hosted version of AROS (i.e. it runs as a Linux process). In order to create a bootable ISO on real (supported) hardware use target `pc-i386` and after `make` run also `make bootiso`.
