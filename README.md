@@ -1,5 +1,5 @@
 # AROS Programming guide: a guide to quickly get into AROS development
-(at least hopefully quicker than it took to me)
+(at least hopefully quicker than it took to me to have it all working)
 
 > This guide is oriented towards Linux users with a good deal of time on their hands and stubborn enough to get to compile the first `hello_world.c`.
 
@@ -11,24 +11,26 @@
 
 There is no working AROS SDK available, you need to download AROS sources and compile AROS and its GCC cross-compiler to have the SDK too.
 
-AROS sources are still on Subversion. Access to that repo is too complicated so if you want to compile the SDK there's a public GIT repository stored elsewhere:
+AROS sources are still on Subversion. Access to that repo is too complicated so if you want to compile the SDK you need to download a tarball [here|http://aros.sourceforge.net/nightly.php] (choose the most recent from "Core AROS sources"):
 
-    $ git clone https://github.com/ezrec/AROS-mirror.git
-    $ cd AROS-mirror
-    $ git checkout ABI_V0-on-trunk-20141231
-    $ cd ..
+    $ tar xvzf AROS-YYYYMMDD-source.tar.bz2
     $ mkdir AROS-source
     $ cd AROS-source
-    $ ../AROS-mirror/AROS/configure --target=linux-i386 --enable-debug
+    $ ../AROS-YYYYMMDD-source/AROS/configure --target=linux-i386 --enable-debug
     $ make
 
-A note about compilation `--target`: implicit target is `linux-i386` to build the hosted version of AROS (i.e. it runs as a Linux process). In order to create a bootable ISO on real (supported) hardware use target `pc-i386` and after `make` run also `make bootiso`.
+The reason to compile in another directory is that the build system has some problems and apparently doesn't compile correctly if launched in the source directory itself.
 
-In order to increase the debug output of an AROS build, append `arguments sysdebug=all` to the file `AROSBootstrap.conf` you find in `bin/linux-i386/AROS/boot/linux/AROSBootstrap.conf`.
+Another note about compilation `--target`: the implicit target is `linux-i386` to build the hosted version of AROS (i.e. it runs as a Linux process). In order to create a bootable ISO on real (supported) hardware use target `pc-i386` and after `make` run also `make bootiso`.
+
+In order to increase the debug output of an AROS build, append `arguments sysdebug=all` to the file `bin/linux-i386/AROS/boot/linux/AROSBootstrap.conf`.
 
 ## 3 - Use many AROS versions to test your software
 
-AROS is a bit of a moving target so ensure to test your software against many AROS releases. I use **three** different environment to ensure the least possible bugs sneak into a release: **AROS built from sources** (which you just did), a recent **AROS pre-built nightly release** and **Icaros** the main, stable, full-featured release that ideally represents the distribution for the general public.
+AROS is a bit of a moving target so ensure to test your software against many AROS releases. I use **three** different environment to ensure the least possible bugs sneak into a release:
+- **AROS built from sources** (which you just did)
+- a recent **AROS pre-built nightly release**
+- **Icaros** the main, stable, full-featured release that ideally represents the distribution for the general public.
 
 ### AROS latest nightly build (linux-i386)
 
@@ -40,7 +42,7 @@ Download from [here](http://www.icarosdesktop.org).
 
 Icaros can run inside real hardware or a virtual machine (Virtualbox, VMWare, QEMU). The recommended way to move files to and from the virtual machine is through a local network FTP (see Icaros documentation).
 
-However I couldn't make it work. Since I only use Virtualbox and there's no way to share a directory with an Virtualbox Icaros guest machine, I had to use a "secondary" virtual FAT32 hard drive to be **alternatively** mounted either on the virtual machine or the Linux host filesystem.
+I couldn't make FTP work; since I only use Virtualbox and there's no way to share a directory with an Virtualbox Icaros guest machine, I had to use a "secondary" virtual FAT32 hard drive to be **alternatively** mounted either on the virtual machine or the Linux host filesystem.
 
 The file is a VDI image, I have a bash script [vdimount.sh](https://github.com/apiraino/aros_guide/blob/master/vdimount.sh) (requires the `qemu-utils` package) that mounts and unmounts the VDI file on the host filesystem. Customize paths in that script to your needs.
 
@@ -117,7 +119,7 @@ This way you inject a breakpoint to (hopefully) help you debugging.
 ## 6 - Emacs configuration:
 
 I moved from a graphical IDE to EMACS (+24). My current setup involves the following MELPA packages:
-- `prelude` (general project management) from ttps://github.com/bbatsov/prelude
+- `prelude` (general project management) from https://github.com/bbatsov/prelude
 - `helm` (for tagging code and move around files) from http://tuhdo.github.io/helm-intro.html
 - `zenburn-theme` :-) from https://github.com/bbatsov/zenburn-emacs
 
