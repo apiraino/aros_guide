@@ -11,7 +11,7 @@
 
 There is no working AROS SDK available, you need to download AROS sources and compile AROS and its GCC cross-compiler to have the SDK too.
 
-AROS sources are still on Subversion. Access to that repo is too complicated so if you want to compile the SDK you need to download a tarball [here|http://aros.sourceforge.net/nightly.php] (choose the most recent from "Core AROS sources"):
+AROS sources are still on Subversion. Access to that repo is too complicated so if you want to compile the SDK you need to download a tarball [here](http://aros.sourceforge.net/nightly.php) (choose the most recent from "Core AROS sources"):
 
     $ tar xvzf AROS-YYYYMMDD-source.tar.bz2
     $ mkdir AROS-source
