@@ -5,7 +5,7 @@
 
 ## 1 - Install needed packages to compile
 
-    $ sudo apt-get install build-essential git automake autoconf netpbm python libc-dev-i386
+    $ sudo apt-get install bison flex build-essential automake autoconf netpbm python libc6-dev-i386 (64bit distro) or libc6-dev (32bit distro)
 
 ## 2 - AROS sources download and compilation
 
@@ -16,7 +16,7 @@ AROS sources are still on Subversion. Access to that repo is too complicated so 
     $ tar xvzf AROS-YYYYMMDD-source.tar.bz2
     $ mkdir AROS-source
     $ cd AROS-source
-    $ ../AROS-YYYYMMDD-source/AROS/configure --target=linux-i386 --enable-debug
+    $ ../AROS-YYYYMMDD-source/configure --target=linux-i386 --enable-debug
     $ make
 
 The reason to compile in another directory is that the build system has some problems and apparently doesn't compile correctly if launched in the source directory itself.
